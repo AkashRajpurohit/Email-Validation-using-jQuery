@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Email Validation</title>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+	  <div class="contents">
+	    <label id="lbl">Email Address</label><br>
+	    <i class="fa fa-check" aria-hidden="true" id="success"></i>
+	    <i class="fa fa-times" aria-hidden="true" id="error"></i>
+	    <i class="fa fa-exclamation" aria-hidden="true" id="warning"></i>
+	    <input type="email" placeholder="Your Email here" id="email"><br />
+	    <span id="span1">Enter a Valid Email Address</span>
+	    <span id="span2">This field can't be Empty</span>
+	  </div>
+	</div>
+	<script>
+	  $(document).ready(function(){
+
+	    $('#email').focusout(function(){
+	      email_validate();
+	    });
+
+			function email_validate() {
+
+			  var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			  var email = $('#email').val();
+        
+				if(email !== '') {
+				  if(pattern.test(email)) {
+				  $('#lbl').css('color','green');
+				  $('#email').css('border','2px solid green'); 
+				  $('#success').css('display','block');
+				  $('#error').css('display','none');
+				  $('#span1').css('display','none');
+				  $('#span2').css('display','none');
+				  $('#warning').css('display','none');
+				  }
+				  else {
+				  $('#lbl').css('color','red');
+				  $('#email').css('border','2px solid red'); 
+				  $('#error').css('display','block');
+				  $('#success').css('display','none');
+				  $('#span1').css('display','block');
+				  $('#span2').css('display','none');
+				  $('#warning').css('display','none');
+				  }
+				}
+			  else {
+			    $('#span2').css('display','block');
+			    $('#lbl').css('color','red');
+			    $('#email').css('border','2px solid red'); 
+			    $('#error').css('display','none');
+			    $('#success').css('display','none');
+			    $('#warning').css('display','block');
+			    $('#span1').css('display','none');
+			  }
+			}
+		});
+	</script>
+</body>
+</html>
